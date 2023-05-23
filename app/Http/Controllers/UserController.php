@@ -16,6 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
+
         $users = User::orderBy('name')->paginate(25);
 
         return view('users.index', compact('users'));
@@ -28,6 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('users.create');
     }
 
@@ -39,6 +43,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', User::class);
+
         $new_user = User::create([
             'name' => $request->nome,
             'email' => $request->email,
@@ -58,6 +64,8 @@ class UserController extends Controller
      */
     public function show(User $usuario)
     {
+        $this->authorize('view', Licitacao::class);
+
         return view('users.show', compact('usuario'));
     }
 
@@ -69,6 +77,8 @@ class UserController extends Controller
      */
     public function edit(User $usuario)
     {
+        $this->authorize('update', User::class);
+
         $user_roles = $usuario->roles->pluck('name');
 
         $roles = Role::orderBy('name')
@@ -88,6 +98,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $usuario)
     {
+        $this->authorize('update', User::class);
+
         $request->validate([
             'password' => ['confirmed'],
         ]);
@@ -119,6 +131,8 @@ class UserController extends Controller
      */
     public function destroy(User $usuario)
     {
+        $this->authorize('delete', User::class);
+
         $usuario->delete();
 
         return to_route('usuarios.index')->with('success', 'Usuário excluído com sucesso.');

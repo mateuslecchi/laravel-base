@@ -59,6 +59,7 @@ class FreshInstallSeeder extends Seeder
         $editar_usuarios = Role::create(['name' => 'Usuários - Editar']);
         $editar_usuarios->givePermissionTo('ver_usuarios');
         $editar_usuarios->givePermissionTo('editar_usuarios');
+        $editar_usuarios->givePermissionTo('deletar_usuarios');
 
         /**
          * Papel de Administrador
