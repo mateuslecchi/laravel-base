@@ -64,7 +64,7 @@ class UserController extends Controller
      */
     public function show(User $usuario)
     {
-        $this->authorize('view', Licitacao::class);
+        $this->authorize('view', User::class);
 
         return view('users.show', compact('usuario'));
     }
