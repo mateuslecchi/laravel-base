@@ -71,6 +71,6 @@ class User extends Authenticatable
             ->logAll()
             ->dontLogIfAttributesChangedOnly(['', ''])
             ->logOnlyDirty()
-            ->useLogName('Notícias');
+            ->useLogName('Users');
     }
 }
